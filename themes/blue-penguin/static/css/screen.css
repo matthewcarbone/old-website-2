@@ -113,9 +113,6 @@ blockquote {
 
 .date {
     color: #666;
-    float: left;
-    clear: both;
-    width: 130px;
     font-size: 1.5em;
     line-height: 1em;
     margin: 0 20px 1em 0;
@@ -149,7 +146,7 @@ blockquote {
 }
 
 .post {
-    margin: 0 0 4.5em 150px;
+    margin: 0 0 4.5em 0;
 }
 .post.archives {
     margin-bottom: 1.5em;
@@ -356,3 +353,14 @@ footer p { margin: 0; }
     padding-left: 1em;
     border-left: #0526b5 solid 4px;
 }
+
+@media (min-width: 500px) {
+     .date {
+         float: left;
+         clear: both;
+         width: 130px;
+     }
+     .post {
+         margin-left: 150px;
+     }
+ }
