@@ -2,7 +2,7 @@ AUTHOR = 'Matthew R. Carbone'
 SITENAME = "Matthew R. Carbone"
 SITESUBTITLE = 'Thoughts, archive and personal website'
 SITEDESCRIPTION = "Personal website of Matthew R. Carbone"
-SITEURL = 'https://x94carbone.github.io'
+SITEURL = ''
 
 PATH = 'content'
 
@@ -39,14 +39,10 @@ RELATIVE_URLS = True
 # )
 
 # Blogroll
-LINKS = (('Pelican', 'https://getpelican.com/'),
-         ('Python.org', 'https://www.python.org/'),
-         ('Jinja2', 'https://palletsprojects.com/p/jinja/'),
-         ('You can modify those links in your config file', '#'),)
+LINKS = ()
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = ()
 
 DEFAULT_PAGINATION = 10
 
@@ -54,7 +50,7 @@ STATIC_PATHS = ['docs']
 
 DIRECT_TEMPLATES = ["index", "archives"]
 
-PAGINATION_PATTERNS = (
-    (1, '{url}', '{save_as}'),
-    (2, '{base_name}/page/{number}/', '{base_name}/page/{number}/index.html'),
-)
+# PAGINATION_PATTERNS = (
+#     (1, '{url}', '{save_as}'),
+#     (2, '{base_name}/page/{number}/', '{base_name}/page/{number}/index.html'),
+# )
