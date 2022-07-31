@@ -1,12 +1,11 @@
 Title: Publications
-Date: 25 Jul 22
-Modified: 25 Jul 22
 Category: About
 Slug: Publications
 Authors: Matthew R. Carbone
 Summary: My current publications list
+Status: published
 
-You can also find me on [Google Scholar](https://scholar.google.com/citations?user=DAyj0b8AAAAJ&hl=en). My dissertation can be found [here](../docs/Matt_Papers/dissertation.pdf).
+You can also find me on [Google Scholar](https://scholar.google.com/citations?user=DAyj0b8AAAAJ&hl=en). My dissertation can be found [here](../docs/Matt_Papers/dissertation.pdf). I host pdfs where possible!
 
 ## Preprints
 
