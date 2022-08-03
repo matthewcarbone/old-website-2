@@ -7,13 +7,12 @@ Status: published
 
 You can also find me on [Google Scholar](https://scholar.google.com/citations?user=DAyj0b8AAAAJ&hl=en). My dissertation can be found [here](../docs/Matt_Papers/dissertation.pdf). I host pdfs where possible!
 
-## Preprints
-
-* **M. R. Carbone** & M. Baity-Jesi. [*Competition between Barrier- and Entropy-Driven Activation in Glasses*](https://arxiv.org/abs/2201.01208). [[PDF&#8599;]](../docs/Matt_Papers/10_arXiv.pdf)
 
 ## 2022
 
-* S. B. Torrisi, J. M. Gregoire, J. Yano, **M. R. Carbone**, C. P. Gomes, L. Hung & S. K. Suram. Accelerated Materials Discovery: [*How to Use Artificial Intelligence to Speed Up Development. Chapter 3: Artificial intelligence for materials spectroscopy*](https://www.degruyter.com/document/doi/10.1515/9783110738087/html?lang=en). Berlin, Boston: De Gruyter (2022)
+* **M. R. Carbone** & M. Baity-Jesi. [*Competition between Barrier- and Entropy-Driven Activation in Glasses*](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.106.024603). Phys. Rev. E 106, 024603 (2022). [[PDF&#8599;]](../docs/Matt_Papers/10.pdf)
+
+* S. B. Torrisi, J. M. Gregoire, J. Yano, **M. R. Carbone**, C. P. Gomes, L. Hung & S. K. Suram. Accelerated Materials Discovery: [*How to Use Artificial Intelligence to Speed Up Development. Chapter 3: Artificial intelligence for materials spectroscopy*](https://www.degruyter.com/document/doi/10.1515/9783110738087/html?lang=en). Berlin, Boston: De Gruyter (2022).
 
 ## 2021
 
