@@ -14,6 +14,7 @@ FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/{slug}.atom.xml'
 
 DELETE_OUTPUT_DIRECTORY = True
+INDEX_SAVE_AS = 'blog_index.html'
 
 # Following items are often useful when publishing
 
