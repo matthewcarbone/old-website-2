@@ -6,8 +6,6 @@ Slug: About-me
 Authors: Matthew R. Carbone
 Summary: About me
 Status: published
-URL:
-save_as: index.html
 
 **Matthew R. Carbone** | `mcarbone@bnl.gov` | he/him
 
