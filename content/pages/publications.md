@@ -12,7 +12,7 @@ You can also find me on [Google Scholar](https://scholar.google.com/citations?us
 
 * A. Ghose, M. Segal, F. Meng, Z. Liang, M. S. Hybertsen, X. Qu, E. Stavitski, S. Yoo, D. Lu & **M. R. Carbone**. [*Uncertainty-aware predictions of molecular X-ray absorption spectra using neural network ensembles*](https://arxiv.org/abs/2210.00336). _In prep_ (target journal: Physical Review Research). arXiv:2210.00336.
 
-* **M. R. Carbone**. [*When not to use machine learning: a perspective on potential and limitations*](https://arxiv.org/abs/2210.02666). In press, MRS Bulletin.
+* **M. R. Carbone**. [*When not to use machine learning: a perspective on potential and limitations*](https://link.springer.com/article/10.1557/s43577-022-00417-z). MRS Bulletin (2022). doi.org/10.1557/s43577-022-00417-z. [[PDF&#8599;]](../docs/Matt_Papers/11.pdf)
 
 * **M. R. Carbone** & M. Baity-Jesi. [*Competition between Barrier- and Entropy-Driven Activation in Glasses*](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.106.024603). Phys. Rev. E 106, 024603 (2022). [[PDF&#8599;]](../docs/Matt_Papers/10.pdf)
 
