@@ -1,3 +1,0 @@
-pelican[markdown]
-pymdown-extensions
-pelican-render-math
