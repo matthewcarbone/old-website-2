@@ -1,0 +1,121 @@
+body {overflow-y: scroll;}
+
+html, *
+{
+  /*  Change the default font size*/
+  font-weight: 200;
+
+  /*  Fallback fonts in case the system doesn't support them*/
+  font-family: 'Inter var', 'Inter', "Helvetica Neue", Helvetica, sans-serif;
+
+/*  font-size: 1.1rem;*/
+/*  font-size: calc(1vw + 1vh);*/
+  font-size: 20px;
+}
+
+
+/* Headers ----------------------------------------------------------------- */
+
+/* Only one of these types of headers per page */
+h1#page_header
+{
+  font-weight: 250;
+  text-align: center;
+  font-size: 2rem;
+}
+
+h2
+{
+  font-weight: 250;
+  font-size: 1.5rem;
+}
+
+/* Paragraphs -------------------------------------------------------------- */
+
+p.centered
+{
+  text-align: center;
+}
+
+.article_author_highlight
+{
+/*  font-weight: 300;*/
+  text-decoration: underline;
+}
+
+.volume_highlight
+{
+  font-weight: 350;
+}
+
+.centered {
+  text-align: center;
+}
+
+ol li {
+  padding: 5px 0px;
+}
+
+.custom_bold {
+  font-weight: 350;
+}
+
+
+/*p#copyright
+{
+  position: fixed;     
+  text-align: center;    
+  bottom: 0px; 
+  left: 0px;
+  width: 100%;
+}*/
+
+/* Images ------------------------------------------------------------------ */
+
+img#headshot {
+  float: left;
+  margin-left: 0em;
+  margin-right: 1em;
+  width: 35%;
+  max-width: 100%;
+  display: block;
+}
+
+
+
+/* Main environment -------------------------------------------------------- */
+/* Deals with setting the correct ratios when viewing on a mobile device or
+tablet. */
+
+.main {
+  /*float: center;
+  width: 45%;
+  margin-left: 27.5%;
+  min-width: 35rem;*/
+  margin: auto;
+  max-width: 35rem;
+}
+
+
+/*@media only screen and (max-width: 620px) {
+  .main {
+    width: 100%;
+    margin-left: 0%;
+    font-size: 16px;
+  }
+}
+*/
+
+/* Hyperlinks -------------------------------------------------------------- */
+
+a:link, a:active, a:visited, a:hover {
+  color: blue;
+  font-weight: 200;
+  display: inline;
+  font-size: 1em;
+  text-decoration: none;
+}
+
+a.underline {
+  text-decoration: underline;
+}

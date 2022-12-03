@@ -1,0 +1,51 @@
+---
+layout: default
+title: Publications
+permalink: /publications.html
+---
+
+<h1 id="page_header">
+  Publications
+</h1>
+<p>
+  An always-up-to-date list of my publications can be found at <a href="https://scholar.google.com/citations?user=DAyj0b8AAAAJ&hl=en">Google Scholar</a> (as I only periodically update my site), but I do host PDF's here when possible! You can find a copy of my dissertation <a href="../_static/Matt_Papers/dissertation.pdf">here</a>.
+</p>
+
+
+{% for section in site.data.publications %}
+  <h2> {{ section.year }} </h2>
+  <ol>
+    {% for pub in section.publications %}
+      <li value="{{ pub.paper_number }}">
+        <span class="article">
+          
+          {% capture authors %}{{ pub.authors | replace: "M. R. Carbone", '<span class="article_author_highlight">M. R. Carbone</span>' }}{% endcapture %}
+
+          {{ authors }}. <em> <a href="{{ pub.doi }}">{{ pub.title }}.</a> </em>
+
+          <!-- If the publication is an arXiv preprint -->
+          {% if pub.journal contains "arXiv" %}
+            {{ pub.journal }} ({{ pub.year }}).
+
+          <!-- Weird edge case, like a book chapter -->
+          {% elsif pub.number == "N/A" %}
+            {{ pub.journal }} ({{ pub.year }}).
+
+          <!-- Everything else, like standard journal entries -->
+          {% else %}
+            {{ pub.journal }} <span class="volume_highlight">{{ pub.volume }}</span>, {{ pub.number }} ({{ pub.year }}).
+          {% endif %}
+
+          {% for link in pub.links %}
+            {% if link.address != null %}
+              [<a href="{{ link.address }}">{{ link.text }}</a>]
+            {% else %}
+              [{{ link.text }}]
+            {% endif %}
+          {% endfor %}
+        </span>
+      </li>
+    {% endfor %}
+  </ol>
+  
+{% endfor %}

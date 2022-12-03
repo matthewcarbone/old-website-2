@@ -1,0 +1,8 @@
+- name: home
+  link: /index.html
+- name: about me
+  link: /about.html
+- name: publications
+  link: /publications.html
+- name: cat
+  link: /cat.html

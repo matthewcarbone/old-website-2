@@ -1,0 +1,190 @@
+- year: 2022
+  publications:
+
+  - authors: M. R. Carbone, S. Fomichev, A. J. Millis, M. Berciu, D. R. Reichman & J. Sous
+    title: "The Generalized Green's function Cluster Expansion: A Python package for simulating polarons"
+    doi: "https://arxiv.org/abs/arXiv:2210.12260"
+    journal: "arXiv:2210.12260"
+    year: 2022
+    links:
+      - address: "https://github.com/openjournals/joss-reviews/issues/4884"
+        text: "&#128300; Under Review: Journal of Open Source Software"
+      - address: "https://github.com/x94carbone/GGCE"
+        text: GitHub
+    paper_number: 16
+
+  - authors: M. R. Carbone, F. Meng, C. Vorwerk, B. Maurer, F. Peschel, X. Qu, E. Stavitski, C. Draxl, J. Vinson & D. Lu
+    title: "Lightshow: a Python package for generating computational x-ray absorption spectroscopy input files"
+    doi: "https://arxiv.org/abs/arXiv:2211.04452"
+    journal: "arXiv:2211.04452"
+    year: 2022
+    links:
+      - address: "https://github.com/openjournals/joss-reviews/issues/4888"
+        text: "&#128300; Under Review: Journal of Open Source Software"
+      - address: "https://github.com/AI-multimodal/Lightshow"
+        text: GitHub
+    paper_number: 15
+
+  - authors: A. Ghose, M. Segal, F. Meng, Z. Liang, M. S. Hybertsen, X. Qu, E. Stavitski, S. Yoo, D. Lu & M. R. Carbone
+    title: Uncertainty-aware predictions of molecular X-ray absorption spectra using neural network ensembles
+    doi: "https://arxiv.org/abs/arXiv:2210.00336"
+    journal: "arXiv:2210.00336"
+    year: 2022
+    links:
+      - address: null
+        text: "&#128300; Under Review: Physical Review Research"
+    paper_number: 14
+
+  - authors: M. R. Carbone
+    title: "When not to use machine learning: A perspective on potential and limitations"
+    doi: https://doi.org/10.1557/s43577-022-00417-z
+    journal: MRS Bulletin
+    volume: 47
+    number: "968–974"
+    year: 2022
+    paper_number: 13
+
+  - authors: M. R. Carbone & M. Baity-Jesi
+    title: Competition between Barrier- and Entropy-Driven Activation in Glasses
+    doi: "https://doi.org/10.1103/PhysRevE.106.024603"
+    journal: Physical Review E
+    volume: 106
+    number: "024603"
+    year: 2022
+    links:
+      - address: docs/10.pdf
+        text: PDF
+    paper_number: 12
+
+  - authors: S. B. Torrisi, J. M. Gregoire, J. Yano, M. R. Carbone, C. P. Gomes, L. Hung & S. K. Suram
+    title: "Accelerated Materials Discovery: How to Use Artificial Intelligence to Speed Up Development / Chapter 3: Artificial intelligence for materials spectroscopy"
+    doi: "https://doi.org/10.1515/9783110738087"
+    journal: "Berlin, Boston: De Gruyter"
+    number: "N/A"
+    year: 2022
+    paper_number: 11
+
+- year: 2021
+  publications:
+
+  - authors: C. Miles, M. R. Carbone, E. J. Sturm, D. Lu, A. Weichselbaum, K. Barros & R. M. Konik
+    title: Machine learning of Kondo physics using variational autoencoders and symbolic regression
+    doi: "https://doi.org/10.1103/PhysRevB.104.235111"
+    journal: Physical Review B
+    volume: 104
+    number: "235111"
+    year: 2021
+    links:
+      - address: docs/09.pdf
+        text: PDF
+    paper_number: 10
+
+  - authors: M. R. Carbone, A. J. Millis, D. R. Reichman & J. Sous
+    title: "Bond Peierls polaron: Moderate mass enhancement and current carrying ground state"
+    doi: "https://doi.org/10.1103/PhysRevB.104.L140307"
+    journal: Physical Review B
+    volume: 104
+    number: "L140307"
+    year: 2021
+    links:
+      - address: docs/08.pdf
+        text: PDF
+    paper_number: 9
+
+  - authors: M. R. Carbone, D. R. Reichman & J. Sous
+    title: Numerically Exact Generalized Green’s Function Cluster Expansions for Electron-Phonon Problems
+    doi: "https://doi.org/10.1103/PhysRevB.104.035106"
+    journal: Physical Review B
+    volume: 104
+    number: "035106"
+    year: 2021
+    links:
+      - address: docs/07.pdf
+        text: PDF
+    paper_number: 8
+
+  - authors: E. J. Sturm, M. R. Carbone, D. Lu, A. Weichselbaum & R. M. Konik
+    title: Computing Anderson Impurity Model Spectra Using Machine Learning
+    doi: "https://doi.org/10.1103/PhysRevB.103.245118"
+    journal: Physical Review B
+    volume: 103
+    number: "245118"
+    year: 2021
+    links:
+      - address: docs/06.pdf
+        text: PDF
+    paper_number: 7
+
+- year: 2020
+  publications:
+
+  - authors: S. B. Torrisi, M. R. Carbone, B. A. Rohr, J. H. Montoya, Y. Ha, J. Yano, S. K. Suram & L. Hung.
+    title: Random Forest Machine Learning Models for Interpretable X-Ray Absorption Near-Edge Structure Spectrum-Property Relationships
+    doi: "https://doi.org/10.1038/s41524-020-00376-6"
+    journal: npj Computational Materials
+    volume: 6
+    number: "109"
+    year: 2020
+    paper_number: 6
+
+  - authors: M. R. Carbone, M. Z. Mayers & D. R. Reichman
+    title: Microscopic model of the doping dependence of linewidths in monolayer transition metal dichalcogenides
+    doi: "https://doi.org/10.1063/5.0008730"
+    journal: The Journal of Chemical Physics
+    volume: 152
+    number: "194705"
+    year: 2020
+    links:
+      - address: docs/04.pdf
+        text: PDF
+    notes: Part of a special edition on 2D materials
+    paper_number: 5
+
+  - authors: M. R. Carbone, V. Astuti & M. Baity-Jesi
+    title: Effective Trap-like Activated Dynamics in a Continuous Landscape
+    doi: "https://doi.org/10.1103/PhysRevE.101.052304"
+    journal: Physical Review E
+    volume: 101
+    number: "052304"
+    year: 2020
+    links:
+      - address: docs/03.pdf
+        text: PDF
+    paper_number: 4
+
+  - authors: M. R. Carbone, M. Topsakal, D. Lu & S. Yoo
+    title: Machine-learning X-ray absorption spectra to quantitative accuracy
+    doi: "https://doi.org/10.1103/PhysRevLett.124.156401"
+    journal: Physical Review Letters
+    volume: 124
+    number: "156401"
+    year: 2020
+    links:
+      - address: docs/02.pdf
+        text: PDF
+    paper_number: 3
+
+- year: "<2020"
+  publications:
+
+  - authors: M. R. Carbone, S. Yoo, M. Topsakal & D. Lu
+    title: Classification of local chemical environments from x-ray absorption spectra using supervised machine learning
+    doi: "https://doi.org/10.1103/PhysRevMaterials.3.033604"
+    journal: Physical Review Materials
+    volume: 3
+    number: "033604"
+    year: 2019
+    links:
+      - address: docs/01.pdf
+        text: PDF
+    notes: Editors' suggestion
+    paper_number: 2
+
+  - authors: M. R. Carbone, G. A. Centola, A. Haas, K. P. McClelland, M. D. Moskowitz, A. M. Verderame, M. S. Olezeski, L. J. Papa, S. C. M. Dorn, W. W. Brennessel & D. J. Weix
+    title: "Crystal structures of (RS)-N-[(1R,2S)-2-benzyloxy-1-(2,6-dimethylphenyl)propyl]-2-methylpropane-2-sulfinamide and (RS)-N-[(1S,2R)-2-benzyloxy-1-(2,4,6-trimethylphenyl)propyl]-2-methylpropane-2-sulfinamide: two related protected 1,2-amino alcohols"
+    doi: "https://scripts.iucr.org/cgi-bin/paper?su2794"
+    journal: Acta Crystallographica
+    volume: E70
+    number: "365-369"
+    year: 2014
+    paper_number: 1
