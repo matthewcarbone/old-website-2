@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Matthew R. Carbone</title>
+    <link rel="shortcut icon" type="image/png" href="https://x94carbone.github.io/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://x94carbone.github.io/favicon.ico">
+    <link href="https://x94carbone.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Matthew R. Carbone Full Atom Feed" />
+    <link rel="stylesheet" href="https://x94carbone.github.io/theme/css/screen.css" type="text/css" />
+    <link rel="stylesheet" href="https://x94carbone.github.io/theme/css/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://x94carbone.github.io/theme/css/print.css" type="text/css" media="print" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="Personal website of Matthew R. Carbone" />
+    <meta name="author" content="Matthew R. Carbone" />
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="selected"><a href="https://x94carbone.github.io/">Home</a></li>
+                <li><a href="https://x94carbone.github.io/pages/About-me.html">About</a></li>
+                <li><a href="https://x94carbone.github.io/pages/Publications.html">Publications</a></li>
+                <li><a href="https://x94carbone.github.io/archives">Archives</a></li>
+            </ul>
+        </nav>
+        <div class="header_box">
+            <h1><a href="https://x94carbone.github.io/">Matthew R. Carbone</a></h1>
+            <h2>Thoughts, archive and personal website</h2>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Jul 25, 2022</h4>
+
+            <article class="post">
+                <h1 class="title">
+                    <a href="https://x94carbone.github.io/an-introduction-to-slurm.html" rel="bookmark" title="Permanent Link to &quot;An introduction to SLURM&quot;">An introduction to SLURM</a>
+                </h1>
+
+                <div class="summary">
+                  <p>SLURM is complicated, so lets start from the beginning</p>
+                </div>
+
+                <p>In computational science, we must often utilize high-performance computing (HPC) resources in order to do our work, as the necessary scope of the computations far exceeds what is available on a single workstation (e.g., your laptop). This can be due to at least one of the following reasons:</p>
+<ul>
+<li>
+<p>Lack of computational power, i.e. we need more CPU's or GPU's.</p>
+</li>
+<li>
+<p>Lack of memory, i.e. we need more RAM.</p>
+</li>
+<li>
+<p>Runtime is long, i.e. we don't want to leave our workstations on overnight.
+Many jobs need to be run, but you don't want to run hundreds of jobs in series on your workstation. Instead, you want to run them in parallel.</p>
+</li>
+</ul>
+<p>HPC resources rely on job schedulers, which provide a way of allowing users to submit jobs to specialized compute nodes, while also using sophisticated algorithms to control which users get which resources and when.  SLURM is one of these schedulers.</p>
+<h1>Overview</h1>
+<p>I believe there is a dearth of content intended for extreme beginners using job controllers on HPC platforms, and for better or worse, the official documentation is quite dense. What I do know for sure is that some years ago when I was a new graduate student, I would have found a barebones-simple introduction to the topic useful. Students just entering the world of HPC will probably get the most out of this, but everyone can use a refresher!</p>
+<p>If all goes well, this will be part of a series of posts. The general plan is:</p>
+<ol>
+<li>
+<p>A brief, simplest possible introduction, covering basic HPC jargon, output/error streams, partitions, time limits and basic job submission. <strong>[You are here]</strong></p>
+</li>
+<li>
+<p>A slightly more advanced introduction, covering CPUs, memory allocation, and some other SLURM flags.</p>
+</li>
+<li>
+<p>Practical Message Passing Interface (MPI) usage and processes.</p>
+</li>
+</ol>
+<h1>Some HPC jargon</h1>
+<p>Before continuing, it is important to get some jargon out of the way. I will try to avoid using any jargon not common to your average Stack Overflow post. Anything not "common knowledge" will be described here!</p>
+<h2>Nodes/machines and memory (and HPC platforms)</h2>
+<p>An HPC platform is not like your laptop, which is a single machine. An HPC platform consists of many machines. A "machine" in this context is a self-contained "computer" in which each central processing unit (CPU or core) shares the same memory (known often as RAM). For example, my current laptop has 6 physical cores and 32 GB of RAM. When running computations on my laptop, each core can access that RAM. However, unless I do something quite complicated, my laptop's cores cannot access, say, my Desktop's, as that computer is a separate machine.</p>
+<p>Similarly, in the HPC world, a machine is known as a node. While it is the case that in the real world nodes are much more complicated than I will explain here, the two most important puzzle pieces for the average user are cores and memory. Each node has some number of CPU cores and some amount of memory (RAM). For example, on the <a href="https://docs.nersc.gov/systems/cori/">Cori Haswell supercomputer</a>, there are a total of 2,388 nodes. Each (standard) node has 32 cores, and each node has 128 GB of memory, shared between those 32 cores. Nodes can indeed be connected during computations to allow for even more computational power, but that is a discussion for another time!</p>
+<p>To be absolutely clear, memory is not the same as what's on your hard drive. Memory is used temporarily and then discarded after your program finishes. On an HPC platform, your "hard drive" is usually a chunk of some login node.</p>
+<h2>"The queue"</h2>
+<p>I will be referring to "the queue" a lot in the future, and it's something you will be checking quite often if you run jobs on an HPC platform. Without specifying to SLURM, the queue (job queue) is a list of currently running [on compute nodes] and pending jobs. Users can use the queue to check the status of their own and other peoples' jobs.</p>
+<h1>What is SLURM?</h1>
+<p>The <a href="https://slurm.schedmd.com/quickstart.html">Simple Linux Utility for Resource Management</a>, or SLURM for short, is a common resource scheduling software that is used everywhere in the HPC world, from research group-owned clusters of a hand full of nodes, to massive supercomputers. Long story short, from cluster login nodes, it allows users to request certain resources for certain time periods, in order to run their code.</p>
+<p>Contrary to it's name, SLURM is not necessarily... simple. Like Git, it takes quite a bit of time to get down the basics, and it is near impossible to master it to 100% of it's functionality. Nevertheless, for most, the basics are sufficient. In what follows, we will touch on a small percent of those basics.</p>
+<h1>SLURM "hello world"</h1>
+<p>Let's go over a minimal example first. Here, your submit script might be entitled <code>hello_world.sbatch</code>,</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!bin/bash</span>
+<span class="c1">#SBATCH -o path/to/my_output_stream.out</span>
+<span class="c1">#SBATCH -e path/to/my_error_stream.err</span>
+<span class="c1">#SBATCH -p my_partition_name</span>
+<span class="c1">#SBATCH -t 00:30:00</span>
+
+python3 hello_world.py
+</code></pre></div>
+
+<p>where <code>hello_world.py</code> is</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>A quick note: the <code>.sbatch</code> "extension" is not necessary. You could just as well called the script <code>hello_world.sh</code>, since essentially it is just a shell script. I simply use the <code>.sbatch</code> suffix to indicate that the shell script is also a SLURM submission script.</p>
+<p>Another quick note: if you're wondering what the following are:
+* <code>#!bin/bash</code> &amp; <code>#!/usr/bin/env python3</code> are "shebangs." See e.g. <a href="https://stackoverflow.com/questions/6908143/should-i-put-shebang-in-python-scripts-and-what-form-should-it-take">here</a>.
+* <code>if __name__ == '__main__':</code> is good practice in Python coding when writing scripts (programs you execute from the command line or in this case, a SLURM job). See e.g. <a href="https://medium.com/python-features/understanding-if-name-main-in-python-a37a3d4ab0c3">here</a>.</p>
+<p>Let's go over what each component of this job will do if you were to submit this to some HPC cluster. It is worth noting that you can run any SLURM script like a bash script, e.g., <code>bash hello_world.sbatch</code>, and it would ignore any lines starting with <code>#</code>. However, when submitting to the job controller using <code>sbatch</code>, e.g., <code>sbatch hello_world.sbatch</code>, it (SLURM) will look for any lines starting with <code>#SBATCH</code> and use those flags to specify a variety of parameters for the job.</p>
+<h2>Output and error streams</h2>
+<p>When you run e.g. a Python script, there are streams of output that your computer will handle: the output and error streams.</p>
+<p>The usual stuff, like calling <code>print</code> in Python, or <code>std::cout</code> in C++, will pipe to the output stream. Usually, this is your console, but in the HPC world, your job is being run on a compute node. Unless you were to try something fancy, which you probably shouldn't, there is no console output to view. Instead, the output stream is piped to an output file, which is specified by <code>#SBATCH -o</code>. In the example provided, your output stream will be piped instead to <code>path/to/my_output_stream.out</code>.</p>
+<p>Anything representing a problem (or possible problem) with the execution of your code, e.g. warnings or errors, will be piped to the error stream. Usually, this is also your console, but for the same reasons as the output stream, we will not have a console. So, your warnings and errors (such as those thrown by the <a href="https://docs.python.org/3/library/warnings.html">Python warnings module</a>) will be piped instead to <code>path/to/my_error_stream.err</code>. If it wasn't clear, this is specified by the <code>#SBATCH -e</code> flag.</p>
+<p>Keep in mind, piping to output or error streams writes to storage (your user directory) in the same way saving a file does. This is usually a relatively slow operation, so as general good practice, you'll want to do this as little as possible. Logging some progress information is fine, but for example, saving massive files (e.g. full machine learning models at every epoch) could slow down your code significantly.</p>
+<h2>Partitions</h2>
+<p>Often, the administrators of HPC platforms will "partition" (zing) available nodes into different groups which serve different purposes. These are called partitions and are best explained through example. Here are a few kinds of partitions I have run into in my time using many HPC platforms.</p>
+<ul>
+<li>
+<p><code>debug</code>: This is probably the most ubiquitous type of partition (i.e., basically every HPC platform has one). It is usually only a few nodes (on small platforms, it can be as few as 2), and is reserved for (you guessed it!) debugging your code. The most commonly shared property of nodes in a debugging partition is a short time limit. In other words, you can only use the resources continuously for a short amount of time, usually about 30 minutes. This ensures high-throughput, so lots of users can use the resources to quickly debug their code without having to wait in the queue very long.</p>
+</li>
+<li>
+<p><code>standard</code> or <code>long</code>: This is the main subset of the platform, consisting of nodes used for "long" jobs, usually 24-48 hours. There are generally no special shared properties of these types of nodes, and users can usually request many at once, sometimes 20 (on e.g. medium-sized clusters), sometimes thousands (e.g. on the <a href="https://docs.nersc.gov/systems/cori/knl_modes/">Cori Knight's Landing supercomputer</a>)! Generally, the more resources you request, the longer it will take for your job to start running.</p>
+</li>
+<li>
+<p>"Big memory": Big memory nodes are just what you expect. Instead of the standard nodes that have 128–256 GB of memory, these nodes can have a few TB of memory. There are usually very few of these, if any, and they should only be used for jobs that require that much memory.</p>
+</li>
+<li>
+<p>Project-specific: Sometimes, researchers can "buy" entire chunks of a supercomputer for specific projects tied to specific grants. Likely, these are not anything you need to worry about, but if you see a partition like covid19_drug_design or something like that, it could be a part of the platform that has been allocated for a specific purpose for use by specific researchers.</p>
+</li>
+</ul>
+<p>Continuing with the intuitive labeling, partitions are specified by <code>#SBATCH -p</code>. Also, keep in mind the above names are just examples, and will be different depending on the cluster you're using.</p>
+<h2>Time limits</h2>
+<p>Time limits are self-explanatory on face, but come with a subtlety. The more time you request, e.g. <code>#SBATCH -t 01:00:00</code> (one day) the longer it will take your job to start running, since SLURM and other job controllers prioritize filling "gaps" in the queue with shorter jobs. The less time you request, e.g. <code>#SBATCH -t 00:01:00</code> (one hour), the more likely it is your job will start quickly, but if your time limit runs out before your job is complete, your job will be terminated, forcing you to restore from checkpoint (if you have that functionality) or worse, restarting completely. Thus, balancing the time you request with the time you actually <em>need</em> is quite important, especially on some of the larger clusters such as Cori, where a job can stay in the queue for weeks depending on the resources and time requested.</p>
+<h1>Submitting jobs</h1>
+<p>So now that you have your <code>hello_world.py</code> file and SLURM submission script ready to go, you're able to submit to the SLURM job controller. This is done by running</p>
+<blockquote>
+<p><code>sbatch submit.sbatch</code></p>
+</blockquote>
+<p>from your terminal on the HPC platform login node (where you connect to when you <code>ssh</code> into the platform). It's that simple! You will also likely see some feedback on your terminal, something akin to</p>
+<blockquote>
+<p><code>Submitted batch job ######</code></p>
+</blockquote>
+<p>where the number is the <em>job ID</em> of the job.</p>
+<h2>Checking the status of submitted jobs</h2>
+<p>It may seem surprising the first time you submit a job, but other than the output described above, it will seem that nothing has happened! If everything was done properly, you are still on the login node, where you started, and your job is running on a compute node. There are a few things you can do to check that everything is running properly.</p>
+<p>Check the status of your <code>.out</code> and <code>.err</code> files via, for example, <code>cat path/to/my_output_stream.out</code> or <code>cat path/to/my_error_stream.err</code>. Note: the frequency at which these files updates depends on how often your code flushes the output/error stream buffers (see e.g. <a href="https://stackoverflow.com/questions/230751/how-can-i-flush-the-output-of-the-print-function">here</a>).</p>
+<p>Check the queue. You can actually see all users running jobs, including you! For example, to check everyone's jobs, simply use squeue. To check only your jobs, you can use <code>squeue -u &lt;you_username&gt;</code>.</p>
+<h1>Conclusion</h1>
+<p>SLURM has a steep learning curve. It can be difficult at first to figure out precisely what's going on under the hood, and how to setup jobs to run efficiently. In the first part of this guide, I hope you've come away with a better understanding of the basics of what SLURM is, how it works (to a limited extent) and how to setup your first <code>hello_world.sbatch</code> script. In the posts to come, I will present more complex topics that build on the concepts presented here, such as specifying CPU and GPU resources, and parallel computing, such as using MPI.</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://x94carbone.github.io/an-introduction-to-slurm.html">posted at 23:20</a>
+                    &nbsp;&middot;&nbsp;<a href="https://x94carbone.github.io/category/high-performance-computing.html" rel="tag">High-performance computing</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://x94carbone.github.io/tag/hpc.html" class="tags">hpc</a>
+                    &nbsp;<a href="https://x94carbone.github.io/tag/slurm.html" class="tags">slurm</a>
+                </div>
+            </article>
+
+            <div class="clear"></div>
+            <footer>
+                <p>
+                ©2022 Matthew R. Carbone <a href="https://x94carbone.github.io/pages/license.html" rel="alternate">CC-BY-4.0</a>
+                &middot;
+                <!-- Based on <a href="https://github.com/jody-frankowski/blue-penguin">Blue Penguin</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a> -->
+                Source on <a href="https://github.com/x94carbone/x94carbone.github.io">GitHub</a>
+                <!--                 &middot;
+                <a href="https://x94carbone.github.io/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+ -->
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
